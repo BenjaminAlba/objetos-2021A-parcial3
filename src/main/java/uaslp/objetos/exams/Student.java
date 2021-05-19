@@ -8,12 +8,13 @@ public class Student {
     private int code;
     private double average;
 
-    List<Integer> scores;
+    private Integer scores[];
 
     public Student(String Name, int Code)
     {
         this.name=Name;
         this.code=Code;
+        scores = new Integer[3];
     }
 
     public String getName() {
@@ -29,17 +30,20 @@ public class Student {
         if(index<1 || index>3) {
             throw new InvalidPartialException();
         }
-            scores.add(index,score);
+            scores[index-1]=score;
     }
 
     public double getAverage() throws MissingScoreException
     {
-        if(scores.get(1)==null || scores.get(2)==null || scores.get(3)==null)
+        for(int i=0;i<3;i++)
         {
-            throw new MissingScoreException();
+            if(scores[i]==null)
+            {
+                throw new MissingScoreException("Missing partial " + (i+1));
+            }
         }
 
-        average=scores.get(1)+scores.get(2)+scores.get(3);
+        average=scores[0]+scores[1]+scores[2];
         average=average/3;
         return average;
     }

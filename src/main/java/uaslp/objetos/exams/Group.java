@@ -1,6 +1,7 @@
 package uaslp.objetos.exams;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Group {
@@ -11,6 +12,7 @@ public class Group {
     public Group(int Capacity)
     {
         this.capacity=Capacity;
+        students = new LinkedList<>();
     }
 
     public int getCapacity()
